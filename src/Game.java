@@ -1,61 +1,58 @@
 import java.util.*;
 
 public class Game {
+    public static final int NUMERO_MAXIMO_DO_SORTEIO = 6;
     public static void main(String[] args) {
         List<Integer> acertou = new ArrayList<>();
         List<Integer> errou = new ArrayList<>();
-        Random random = new Random();
-        int numeroPensado = random.nextInt(6);
         int pontos = 0;
+        boolean startGame = true;
         Scanner input = new Scanner(System.in);
-        while (true){
+        while (startGame){
+            int numeroPensado = getNumeroPensado();
             System.out.println("Tente chutar um valor: ");
             int chute = input.nextInt();
-            if (chute == numeroPensado){
-                pontos += 10;
-                acertou.add(chute);
-                System.out.printf("Parabéns, você acertou! o número que eu pensei foi o %d \n", numeroPensado);
-                System.out.println("A sua pontuação é: " + pontos);
-
-                System.out.println("Deseja jogar novamente ? \n 1 para sim \n2 para não \n");
-                int op = input.nextInt();
-                if (op == 1){
-                    numeroPensado = random.nextInt(6);
-                    continue;
-                }else if (op == 2){
-                    System.out.println("Até a próxima, tchau!");
-                    break;
-                }else {
-                    System.out.println("Opção invalida");
-                    break;
-                }
-            }else if (chute - numeroPensado == -1 || chute - numeroPensado == 1){
-                errou.add(chute);
-                pontos += 5;
-                System.out.println("Quase acertou, mas como recopensa vou te dar 5 pontos");
-            }else {
-                errou.add(chute);
-                System.out.println("Que pena, você perdeu \n Sua pontuação é: " + pontos + " pontos");
-
-                System.out.println("Deseja jogar novamente ? \n 1 para sim \n2 para não \n");
-                int op = input.nextInt();
-                if (op == 1){
-                    numeroPensado = random.nextInt(6);
-                    continue;
-                }else if (op == 2){
-                    System.out.println("Até a próxima, tchau!");
-                    break;
-                }else {
-                System.out.println("Opção invalida");
-                break;
-                }
-
-
+            int pontosTemporarios = validaPontos(numeroPensado, chute);
+            pontos += pontosTemporarios;
+            startGame = continuarJogo(pontosTemporarios);
+            if (startGame == false){
+                startGame = msg(acertou, errou, pontos);
             }
         }
+        input.close();
+    }
+
+    private static boolean msg(List<Integer> acertou, List<Integer> errou, int pontos) {
+        Scanner input = new Scanner(System.in);
         System.out.println("A sua pontuação é: " + pontos);
         System.out.println("Os números acertados foram: " + acertou.toString());
         System.out.println("Os números errados foram: " + errou.toString());
-        input.close();
+        System.out.println("Deseja jogar novamente? S | N");
+        String op = input.next();
+        if (op.equalsIgnoreCase("s")){
+            return  true;
+        }
+        return  false;
+
+    }
+
+    private static int getNumeroPensado() {
+        Random random = new Random();
+        return random.nextInt(NUMERO_MAXIMO_DO_SORTEIO);
+    }
+    private static int validaPontos(int numeroPensado, int chute){
+        if (chute == numeroPensado){
+            return  10;
+        }
+        if (chute - numeroPensado == -1 || chute - numeroPensado == 1){
+            return  5;
+        }
+        return  0;
+    }
+    private  static  boolean continuarJogo(int pontos){
+        if (pontos == 0){
+            return false;
+        }
+        return  true;
     }
 }
