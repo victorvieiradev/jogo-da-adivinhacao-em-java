@@ -25,6 +25,7 @@ public class Game {
 
     private static boolean msg(Set<Integer> acertou, Set<Integer> errou, int pontos) {
         Scanner input = new Scanner(System.in);
+        System.out.println("Eu pensei no número: " + getNumeroPensado());
         System.out.println("A sua pontuação é: " + pontos);
         System.out.println("Os números acertados foram: " + acertou.toString());
         System.out.println("Os números errados foram: " + errou.toString());
@@ -53,7 +54,7 @@ public class Game {
         errou.add(chute);
         return  0;
     }
-    private  static  boolean continuarJogo(int pontos){
+    private  static boolean continuarJogo(int pontos){
         if (pontos == 0 || pontos == 10){
             return false;
         }
