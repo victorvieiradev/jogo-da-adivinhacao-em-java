@@ -42,7 +42,7 @@ public class Game {
 
     }
 
-    public static int getNumeroPensado() {
+    private static int getNumeroPensado() {
         Random random = new Random();
         return random.nextInt(NUMERO_MAXIMO_DO_SORTEIO);
     }
