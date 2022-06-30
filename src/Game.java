@@ -27,7 +27,7 @@ public class Game {
         System.out.println("Os números errados foram: " + errou.toString());
         System.out.println("Deseja jogar novamente? S | N");
         String op = input.next();
-        if (op.equalsIgnoreCase("s")){
+        if ("s".equalsIgnoreCase(op)){
             numeroPensado = getNumeroPensado();
             return  true;
         }
