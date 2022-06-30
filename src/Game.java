@@ -12,9 +12,8 @@ public class Game {
             int numeroPensado = getNumeroPensado();
             System.out.println("Tente chutar um valor: ");
             int chute = input.nextInt();
-            int pontosTemporarios = validaPontos(numeroPensado, chute);
-            pontos += pontosTemporarios;
-            startGame = continuarJogo(pontosTemporarios);
+            pontos += validaPontos(numeroPensado, chute);
+            startGame = continuarJogo(validaPontos(numeroPensado, chute));
             if (startGame == false){
                 startGame = msg(acertou, errou, pontos);
             }
