@@ -2,9 +2,11 @@ import java.util.*;
 
 public class Game {
     public static final int NUMERO_MAXIMO_DO_SORTEIO = 6;
+    public static Set<Integer> acertou = new HashSet<>();
+    public static Set<Integer> errou = new HashSet<>();
     public static void main(String[] args) {
-        List<Integer> acertou = new ArrayList<>();
-        List<Integer> errou = new ArrayList<>();
+
+
         int pontos = 0;
         boolean startGame = true;
         Scanner input = new Scanner(System.in);
@@ -21,7 +23,7 @@ public class Game {
         input.close();
     }
 
-    private static boolean msg(List<Integer> acertou, List<Integer> errou, int pontos) {
+    private static boolean msg(Set<Integer> acertou, Set<Integer> errou, int pontos) {
         Scanner input = new Scanner(System.in);
         System.out.println("A sua pontuação é: " + pontos);
         System.out.println("Os números acertados foram: " + acertou.toString());
@@ -41,15 +43,18 @@ public class Game {
     }
     private static int validaPontos(int numeroPensado, int chute){
         if (chute == numeroPensado){
+            acertou.add(chute);
             return  10;
         }
         if (chute - numeroPensado == -1 || chute - numeroPensado == 1){
+            errou.add(chute);
             return  5;
         }
+        errou.add(chute);
         return  0;
     }
     private  static  boolean continuarJogo(int pontos){
-        if (pontos == 0){
+        if (pontos == 0 || pontos == 10){
             return false;
         }
         return  true;
