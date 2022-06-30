@@ -13,7 +13,7 @@ public class Game {
             int chute = input.nextInt();
             pontos += validaPontos(numeroPensado, chute);
             startGame = continuarJogo(validaPontos(numeroPensado, chute));
-            if (startGame == false){
+            if (!startGame){
                 startGame = msg(acertou, errou, pontos);
             }
         }
