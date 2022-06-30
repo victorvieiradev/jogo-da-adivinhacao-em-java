@@ -4,14 +4,16 @@ public class Game {
     public static final int NUMERO_MAXIMO_DO_SORTEIO = 6;
     public static Set<Integer> acertou = new HashSet<>();
     public static Set<Integer> errou = new HashSet<>();
+    public static  int numeroPensado = getNumeroPensado();
     public static void main(String[] args) {
 
 
         int pontos = 0;
         boolean startGame = true;
+
         Scanner input = new Scanner(System.in);
         while (startGame){
-            int numeroPensado = getNumeroPensado();
+
             System.out.println("Tente chutar um valor: ");
             int chute = input.nextInt();
             pontos += validaPontos(numeroPensado, chute);
@@ -32,13 +34,15 @@ public class Game {
         System.out.println("Deseja jogar novamente? S | N");
         String op = input.next();
         if (op.equalsIgnoreCase("s")){
+            numeroPensado = getNumeroPensado();
             return  true;
+
         }
         return  false;
 
     }
 
-    private static int getNumeroPensado() {
+    public static int getNumeroPensado() {
         Random random = new Random();
         return random.nextInt(NUMERO_MAXIMO_DO_SORTEIO);
     }
