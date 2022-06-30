@@ -1,6 +1,6 @@
 import java.util.*;
 public class Game {
-    public static int NUMERO_MAXIMO_DO_SORTEIO = 5;
+    public static int NUMERO_MAXIMO_DO_SORTEIO = 10;
     public static Set<Integer> acertou = new HashSet<>();
     public static Set<Integer> errou = new HashSet<>();
     public static  int numeroPensado = getNumeroPensado();
@@ -8,6 +8,11 @@ public class Game {
         int pontos = 0;
         boolean startGame = true;
         Scanner input = new Scanner(System.in);
+        System.out.println("Deseja aumentar a dificuldade ? S | N");
+        String res = input.next();
+        if ("s".equalsIgnoreCase(res)){
+            NUMERO_MAXIMO_DO_SORTEIO = 20;
+        }
         while (startGame){
             System.out.println("Tente chutar um valor: ");
             int chute = input.nextInt();
