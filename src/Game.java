@@ -1,6 +1,6 @@
 import java.util.*;
 public class Game {
-    public static final int NUMERO_MAXIMO_DO_SORTEIO = 6;
+    public static int NUMERO_MAXIMO_DO_SORTEIO = 5;
     public static Set<Integer> acertou = new HashSet<>();
     public static Set<Integer> errou = new HashSet<>();
     public static  int numeroPensado = getNumeroPensado();
@@ -21,7 +21,7 @@ public class Game {
     }
     private static boolean msg(Set<Integer> acertou, Set<Integer> errou, int pontos) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Eu pensei no número: " + getNumeroPensado());
+        System.out.println("Eu pensei no número: " + numeroPensado);
         System.out.println("A sua pontuação é: " + pontos);
         System.out.println("Os números acertados foram: " + acertou.toString());
         System.out.println("Os números errados foram: " + errou.toString());
